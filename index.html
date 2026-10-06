@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#ffffff">
+<title>index</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800&family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f1f3f5;--ink:#14171c;--sub:#4b5360;--line:#d5d9e0;--acc:#1d4ed8;--d:#b42318;--db:#fde7e4;--ok:#05603a;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box}[hidden]{display:none!important}
+html{scroll-padding-top:env(safe-area-inset-top,0px);-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Nunito','Nanum Gothic',system-ui,sans-serif;line-height:1.6;-webkit-tap-highlight-color:transparent}
+.wrap{max-width:560px;margin:0 auto;padding:16px 14px 120px}
+h1{font-size:1.9rem;font-weight:800;margin:4px 0 0;letter-spacing:-.02em}
+h2{font-size:1.05rem;font-weight:800;margin:22px 0 8px;display:flex;justify-content:space-between;align-items:center}
+.sub{color:var(--sub);margin:0 0 14px}.muted{color:var(--sub);font-size:.9rem}
+button,input,select,textarea{font:inherit;color:inherit}
+button{touch-action:manipulation;cursor:pointer}
+button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,.card:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+input,select,textarea{width:100%;min-height:44px;font-size:16px;background:#fff;border:1.5px solid var(--line);border-radius:10px;padding:9px 12px}
+label{display:block;font-size:.85rem;font-weight:700;color:var(--sub);margin:12px 0 4px}
+.panel{background:#fff;border:1.5px solid var(--line);border-radius:14px;padding:16px;margin-bottom:12px}
+.panel p{margin:0 0 12px}
+.btn{border:0;background:var(--acc);color:#fff;font-weight:800;min-height:46px;padding:10px 20px;border-radius:10px}
+.btn.ghost{background:#fff;color:var(--ink);border:1.5px solid var(--ink)}
+.btn.dang{background:var(--d)}.btn.sm{min-height:44px;padding:8px 16px}
+.btn:disabled{opacity:.4;cursor:default}
+.link{border:0;background:none;color:var(--acc);font-weight:800;font-size:.88rem;padding:8px 6px}
+.link.danger{color:var(--d)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.stats div{background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:12px 6px;text-align:center}
+.stats b{display:block;font-size:1.7rem;line-height:1.1}.stats span{font-size:.78rem;color:var(--sub);font-weight:700}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{display:inline-flex;align-items:center;gap:6px;border:1.5px solid var(--line);background:#fff;border-radius:999px;min-height:38px;padding:4px 12px;font-size:.86rem;font-weight:700}
+.chip i{width:10px;height:10px;border-radius:50%;background:var(--c)}.chip small{color:var(--sub)}
+.inline{display:flex;gap:8px;margin-top:10px}.inline input{flex:1}
+.row{display:grid;grid-template-columns:1fr auto;gap:0 10px;width:100%;text-align:left;background:#fff;border:1.5px solid var(--line);border-left:5px solid var(--c);border-radius:12px;padding:9px 12px;margin-bottom:8px}
+.row span{grid-column:1/-1;color:var(--sub);font-size:.88rem}.row em{font-style:normal;font-size:.75rem;color:var(--sub)}
+.empty{text-align:center;color:var(--sub);padding:28px 0}
+.bar{display:flex;gap:6px;align-items:center;position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding:6px 0}
+.bar select{flex:1;min-width:0}
+.icon{flex:none;width:46px;height:46px;border-radius:10px;border:1.5px solid var(--ink);background:#fff;display:grid;place-items:center}
+svg.s{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.scene{perspective:1200px;margin:10px 0 12px}
+.card{position:relative;height:min(62vh,440px);min-height:330px;transform-style:preserve-3d;transition:transform .55s cubic-bezier(.4,.2,.2,1);cursor:pointer}
+.card.flip{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:18px;background:#fff;border:1.5px solid var(--line);border-top:8px solid var(--c);padding:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:6px}
+.back{transform:rotateY(180deg);justify-content:flex-start;align-items:stretch;text-align:left;overflow:auto}
+.art{height:130px;display:grid;place-items:center}.art img{max-height:130px;max-width:100%;border-radius:12px;object-fit:contain}
+.en{font-size:2rem;font-weight:800;margin:0;word-break:break-word;line-height:1.2}
+.tagb{font-size:.78rem;font-weight:800;color:var(--c);background:#fff;border:1.5px solid var(--c);border-radius:6px;padding:0 10px}
+.face small{color:var(--sub);font-size:.78rem}
+.back .ko{font-size:1.5rem;font-weight:800;margin:0 0 6px}.back p{margin:0 0 8px}
+.cn .old{border:1.5px dashed #6b7280;color:#6b7280;padding:0 8px;border-radius:6px;text-decoration:line-through}
+.cn .new{background:var(--ink);color:#fff;padding:0 9px;border-radius:6px;font-weight:800}
+.pager{display:flex;align-items:center;justify-content:space-between;gap:10px}.pager .btn{flex:1}.pager span{font-weight:800;min-width:70px;text-align:center}
+.tools2{display:flex;justify-content:center;gap:10px}
+.sw{display:flex;flex-wrap:wrap;gap:8px}
+.swatch{width:36px;height:36px;border-radius:50%;border:3px solid #fff;box-shadow:0 0 0 1.5px var(--line)}.swatch.on{box-shadow:0 0 0 3px var(--ink)}
+.ico{width:46px;height:46px;border-radius:10px;border:1.5px solid var(--line);background:#fff;display:grid;place-items:center;padding:0}.ico.on{border-color:var(--ink);border-width:3px}
+.bmrow{display:flex;align-items:center;gap:8px;background:#fff;border:1.5px solid var(--line);border-left:5px solid var(--c);border-radius:12px;padding:8px 8px 8px 10px;margin-bottom:8px}
+.bmrow div{flex:1;min-width:0}.bmrow b{display:block}.bmrow small{color:var(--sub)}
+.warn{margin-top:12px;padding:10px 12px;border:1.5px solid var(--d);background:var(--db);color:var(--d);font-weight:700;border-radius:10px;font-size:.9rem}
+.prev{max-height:120px;border-radius:10px;margin-top:8px;display:block}
+.actions{display:flex;gap:8px;margin:14px 0 0!important}.actions .btn{flex:1}
+.foot{text-align:center;margin-top:20px}
+nav{position:fixed;left:0;right:0;bottom:0;z-index:20;display:flex;justify-content:center;background:#fff;border-top:1.5px solid var(--line);padding:4px 8px calc(4px + env(safe-area-inset-bottom,0px))}
+nav button{flex:1;max-width:160px;min-height:54px;border:0;background:none;font-size:.74rem;font-weight:800;color:var(--sub);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;border-radius:12px}
+nav button.on{color:var(--acc);background:#e3ebff}
+#sheet{position:fixed;inset:0;z-index:40;background:rgba(20,23,28,.45);display:flex;align-items:flex-end;justify-content:center}
+.sh{background:#fff;width:100%;max-width:560px;border-radius:18px 18px 0 0;padding:18px 16px calc(16px + env(safe-area-inset-bottom,0px));display:grid;gap:8px}
+.sh p{margin:0 0 4px;color:var(--sub)}
+#toast{position:fixed;left:50%;bottom:calc(84px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:#fff;font-weight:700;padding:10px 16px;border-radius:999px;font-size:.9rem;z-index:50;opacity:0;pointer-events:none;transition:opacity .2s;max-width:90%;text-align:center}
+#toast.on{opacity:1}
+@media(prefers-reduced-motion:reduce){.card{transition:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <section id="v-home"></section><section id="v-study" hidden></section>
+  <section id="v-add" hidden></section><section id="v-bm" hidden></section>
+</div>
+<nav aria-label="하단 메뉴">
+  <button class="on" data-act="go" data-v="home"><svg class="s" viewBox="0 0 24 24"><path d="M4 11l8-7 8 7v9H4z"/><path d="M10 20v-6h4v6"/></svg>홈</button>
+  <button data-act="go" data-v="study"><svg class="s" viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="14" rx="2"/><path d="M8 10h8M8 14h5"/></svg>단어장</button>
+  <button data-act="go" data-v="add"><svg class="s" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/></svg>단어등록</button>
+  <button data-act="go" data-v="bm"><svg class="s" viewBox="0 0 24 24"><path d="M6 4h12v17l-6-4-6 4z"/></svg>책갈피</button>
+</nav>
+<div id="sheet" hidden></div><div id="toast" role="status"></div>
+<script>
+const TAGS={S:'구조',D:'질병',X:'증상',M:'미생물',T:'용어'};
+const CLS={구조:'s',질병:'d',증상:'x',미생물:'m',용어:'t'};
+// 형식: 태그|영어|한글(구·신용어가 있으면 간단한 설명)|구용어|신용어
+const RAW={
+'기본간호':`T|Vital signs|활력징후 (체온·맥박·호흡·혈압)
+T|Intake and output|섭취량과 배설량 (I&O)
+T|Informed consent|설명에 근거한 동의
+T|Aspiration|흡인 (음식물·분비물이 기도로 넘어감)
+T|Catheterization|카테터 삽입 (관을 넣어 배액)
+X|Pressure ulcer|욕창
+X|Dehydration|탈수
+X|Hemorrhage|출혈
+X|Fever|발열
+X|Pain|통증`,
+'호흡기계':`S|Nasal cavity|비강
+S|Pharynx|인두
+S|Larynx|후두
+S|Trachea|기관
+S|Bronchus|기관지
+S|Lung|폐
+S|Alveolus|폐포
+S|Pleura|흉막
+S|Diaphragm|횡격막
+D|Pneumonia|폐렴
+D|Asthma|천식
+D|COPD|만성폐쇄성폐질환
+D|Pneumothorax|기흉
+D|Tuberculosis|결핵
+D|Bronchitis|기관지염
+X|Dyspnea|호흡곤란
+X|Cyanosis|청색증
+X|Cough|기침
+X|Sputum|가래`,
+'심혈관계':`S|Heart|심장
+S|Atrium|심방
+S|Ventricle|심실
+S|Valve|판막
+S|Myocardium|심근
+S|Aorta|대동맥
+S|Artery|동맥
+S|Vein|정맥
+S|Capillary|모세혈관
+D|Hypertension|고혈압
+D|Myocardial infarction|심근경색
+D|Angina pectoris|협심증
+D|Heart failure|심부전
+D|Arrhythmia|부정맥
+D|Atherosclerosis|죽상경화증
+D|Thrombosis|혈전증
+D|Dyslipidemia|혈중 지질 수치의 이상|고지혈증|이상지질혈증
+X|Edema|부종
+X|Palpitation|심계항진 (두근거림)
+X|Tachycardia|빈맥`,
+'소화기계':`S|Esophagus|식도
+S|Stomach|위
+S|Duodenum|십이지장
+S|Small intestine|소장
+S|Large intestine|대장
+S|Rectum|직장
+S|Liver|간
+S|Gallbladder|담낭
+S|Pancreas|췌장
+D|Gastritis|위염
+D|Peptic ulcer|소화성 궤양
+D|Hepatitis|간염
+D|Cirrhosis|간 조직이 굳어지는 만성 질환|간경화|간경변증
+D|Appendicitis|충수(막창자꼬리)의 염증|맹장염|충수염
+D|Cholecystitis|담낭염
+D|Pancreatitis|췌장염
+X|Nausea|오심 (메스꺼움)
+X|Vomiting|구토
+X|Hematemesis|토혈
+X|Diarrhea|설사
+X|Constipation|변비
+X|Jaundice|황달`,
+'신경계':`S|Brain|뇌
+S|Cerebrum|대뇌
+S|Cerebellum|소뇌
+S|Brainstem|뇌간
+S|Spinal cord|척수
+S|Meninges|수막
+S|Neuron|신경세포 (뉴런)
+S|Cranial nerve|뇌신경
+D|Stroke (CVA)|뇌혈관 장애로 생기는 급성 신경 손상|중풍|뇌졸중
+D|Epilepsy|반복되는 발작을 보이는 뇌 질환|간질|뇌전증
+D|Meningitis|수막의 염증|뇌막염|수막염
+D|Hemiplegia|몸 한쪽의 마비|반신불수|편마비
+D|Parkinson's disease|파킨슨병
+D|Cerebral palsy|뇌성마비
+X|Seizure|발작
+X|Headache|두통
+X|Dizziness|어지러움
+X|Aphasia|실어증 (언어 장애)`,
+'근골격계':`S|Bone|뼈
+S|Joint|관절
+S|Muscle|근육
+S|Tendon|힘줄
+S|Ligament|인대
+S|Cartilage|연골
+S|Vertebra|척추뼈
+S|Skull|두개골
+D|Fracture|골절
+D|Dislocation|탈구
+D|Osteoporosis|골다공증
+D|Osteoarthritis|관절 연골이 닳는 퇴행성 질환|퇴행성관절염|골관절염
+D|Rheumatoid arthritis|류마티스관절염
+D|Gout|통풍
+D|Scoliosis|척추측만증
+D|Herniated disc|척추 사이 원반의 탈출|디스크|추간판탈출증`,
+'비뇨기계':`S|Kidney|신장
+S|Ureter|요관
+S|Bladder|방광
+S|Urethra|요도
+S|Nephron|신원 (네프론)
+D|Urinary tract infection|요로감염
+D|Cystitis|방광염
+D|Glomerulonephritis|사구체신염
+D|Nephrotic syndrome|신증후군
+D|Renal failure|신부전
+D|Urolithiasis|요로결석
+X|Dysuria|배뇨통
+X|Hematuria|혈뇨
+X|Oliguria|소변량 감소 (핍뇨)`,
+'내분비계':`S|Pituitary gland|뇌하수체
+S|Thyroid gland|갑상선
+S|Adrenal gland|부신
+S|Pancreatic islet|췌도 (랑게르한스섬)
+S|Hormone|호르몬
+S|Insulin|인슐린
+D|Diabetes mellitus|당뇨병
+D|Hyperthyroidism|갑상선기능항진증
+D|Hypothyroidism|갑상선기능저하증
+D|Cushing syndrome|쿠싱증후군
+X|Hypoglycemia|저혈당
+X|Hyperglycemia|고혈당
+X|Polyuria|다뇨`,
+'정신건강':`D|Schizophrenia|사고·감정·지각의 통합 장애|정신분열병|조현병
+D|Bipolar disorder|조증과 우울증이 번갈아 나타남|조울병|양극성장애
+D|Intellectual disability|지적 기능과 적응 행동의 제한|정신지체|지적장애
+D|Obsessive-compulsive disorder|반복되는 강박 사고·행동|강박신경증|강박장애
+D|Autism spectrum disorder|사회적 의사소통 어려움과 반복 행동|자폐증|자폐스펙트럼장애
+D|Hypochondriasis|증상을 중병으로 과도하게 걱정함|건강염려증|질병불안장애
+D|Dementia|기억·인지 기능의 점진적 저하|치매|주요 신경인지장애
+D|Anxiety disorder|지나친 불안과 걱정|불안신경증|불안장애
+D|Conversion disorder|심리 갈등이 신체 증상으로 나타남|히스테리|전환장애
+D|Depression|우울증
+D|Anorexia nervosa|신경성 식욕부진증
+X|Delirium|섬망
+X|Insomnia|불면증
+X|Hallucination|환각
+X|Delusion|망상`,
+'미생물':`M|Bacteria|세균
+M|Virus|바이러스
+M|Fungus|진균 (곰팡이)
+M|Parasite|기생충
+M|Protozoa|원충
+M|Staphylococcus aureus|황색 포도알균|황색포도상구균|황색포도알균
+M|Streptococcus|사슬알균|연쇄상구균|사슬알균
+M|Enterococcus|장알균|장구균|장알균
+M|Escherichia coli|대장균
+M|Pseudomonas aeruginosa|녹농균
+M|Mycobacterium tuberculosis|결핵균
+M|Mycobacterium leprae|나균
+M|Helicobacter pylori|헬리코박터 파일로리균
+M|Salmonella|살모넬라균
+M|Clostridioides difficile|클로스트리디오이데스 디피실리균
+M|MRSA|메티실린내성 황색포도알균
+M|VRE|반코마이신내성 장알균
+M|Influenza virus|인플루엔자 바이러스
+M|HIV|인간면역결핍바이러스
+M|Hepatitis B virus|B형간염바이러스
+M|Candida albicans|칸디다균
+D|Hansen's disease|나균에 의한 만성 감염병|문둥병|한센병
+T|Nosocomial infection|병원 내에서 발생하는 감염|원내감염|의료관련감염
+T|Asepsis|무균법
+T|Disinfection|소독
+T|Sterilization|멸균
+T|Antibiotic|항생제
+T|Standard precautions|표준주의`
+};
+const EXTRA={
+'호흡기계':`D|Pleural effusion|흉수
+D|Pulmonary embolism|폐색전증
+X|Hemoptysis|객혈
+X|Wheezing|천명음 (쌕쌕거리는 숨소리)`,
+'심혈관계':`D|Cardiac arrest|심장 기능이 갑자기 멈춘 상태|심장마비|심정지
+D|Shock|쇼크
+D|Varicose veins|하지정맥류
+X|Hypotension|저혈압
+X|Bradycardia|서맥`,
+'소화기계':`S|Colon|결장
+D|Gastroesophageal reflux disease|위식도역류질환
+D|Hemorrhoid|항문 주변 혈관 조직이 부푼 상태|치질|치핵
+X|Melena|흑색변
+X|Ascites|복수`,
+'신경계':`D|Alzheimer's disease|알츠하이머병
+D|Increased intracranial pressure|두개내압 상승
+X|Syncope|실신`,
+'근골격계':`D|Osteomyelitis|골수염
+D|Sprain|염좌
+X|Contracture|구축`,
+'비뇨기계':`D|Benign prostatic hyperplasia|전립선비대증
+X|Incontinence|요실금
+X|Proteinuria|단백뇨`,
+'내분비계':`D|Diabetic ketoacidosis|당뇨병성 케톤산증`,
+'정신건강':`D|Posttraumatic stress disorder|외상후 스트레스 장애
+X|Mania|조증
+X|Suicidal ideation|자살사고`,
+'혈액·면역':`S|Blood|혈액
+S|Red blood cell|적혈구
+S|White blood cell|백혈구
+S|Platelet|혈소판
+S|Lymph node|림프절
+D|Anemia|빈혈
+D|Leukemia|백혈병
+D|Hemophilia|혈우병
+D|Allergy|알레르기
+D|Anaphylaxis|아나필락시스
+X|Ecchymosis|반상출혈 (멍)
+T|Antibody|항체
+T|Immunity|면역`,
+'피부계':`S|Skin|피부
+S|Epidermis|표피
+S|Dermis|진피
+D|Burn|화상
+D|Dermatitis|피부염
+D|Herpes zoster|대상포진
+D|Cellulitis|피부 밑 연조직의 세균 감염|봉와직염|연조직염
+X|Rash|발진
+X|Pruritus|피부가 간지러운 증상|소양증|가려움증
+X|Wound|상처 (창상)`
+};
+for(const u in EXTRA)RAW[u]=(RAW[u]?RAW[u]+'\n':'')+EXTRA[u];
+{const m=RAW['미생물'];delete RAW['미생물'];RAW['미생물']=m}
+const UNITS=Object.keys(RAW).concat('내 단어');
+const DEF=Object.fromEntries(`Vital signs|체온·맥박·호흡·혈압 등 생명 유지 상태를 나타내는 기본 지표
+Intake and output|일정 시간 동안 몸에 들어온 수분량과 배출된 양을 기록·비교하는 것
+Informed consent|검사·치료의 목적과 위험을 충분히 듣고 환자가 자발적으로 하는 동의
+Aspiration|음식물·분비물·위 내용물이 기도나 폐로 들어가는 것
+Catheterization|관(카테터)을 몸속에 넣어 소변을 배출시키거나 배액하는 처치
+Pressure ulcer|뼈 돌출부에 압박이 지속되어 피부와 조직이 손상된 상태
+Dehydration|체내 수분이 부족해 체액 균형이 깨진 상태
+Hemorrhage|혈관이 손상되어 혈액이 밖으로 나오는 것
+Fever|체온이 정상 범위보다 높아진 상태
+Pain|조직 손상과 연관된 불쾌한 감각·정서 경험
+Nasal cavity|공기가 처음 들어와 데워지고 여과되는 코 안쪽 공간
+Pharynx|코·입과 후두·식도를 잇는 공기와 음식의 공통 통로
+Larynx|기관 위쪽에 있고 발성을 담당하는 성대가 있는 기관
+Trachea|후두에서 기관지로 공기를 보내는 관
+Bronchus|기관에서 갈라져 좌우 폐로 들어가는 공기 통로
+Lung|가스 교환이 일어나는 호흡의 중심 장기
+Alveolus|폐 끝의 작은 공기주머니로 산소와 이산화탄소가 교환되는 곳
+Pleura|폐와 흉벽을 싸고 있는 이중의 얇은 막
+Diaphragm|흉강과 복강을 나누며 호흡 시 수축하는 근육
+Pneumonia|폐 조직(폐포)에 생긴 염증
+Asthma|기도가 좁아져 쌕쌕거림·기침·호흡곤란이 반복되는 만성 염증성 질환
+COPD|기류 제한이 점차 진행되는 만성 폐질환 (만성기관지염·폐기종 포함)
+Pneumothorax|흉막강에 공기가 차서 폐가 쪼그라든 상태
+Tuberculosis|결핵균 감염으로 주로 폐에 생기는 만성 감염병
+Bronchitis|기관지 점막의 염증
+Dyspnea|숨쉬기 힘들거나 숨이 차다고 느끼는 증상
+Cyanosis|산소 부족으로 입술·피부가 푸르스름해지는 것
+Cough|기도의 이물질·분비물을 내보내려는 반사 작용
+Sputum|기도에서 나오는 분비물
+Heart|혈액을 온몸으로 내보내는 근육성 펌프 장기
+Atrium|혈액을 받아들이는 심장의 위쪽 방
+Ventricle|혈액을 폐나 온몸으로 내보내는 심장의 아래쪽 방
+Valve|혈액이 거꾸로 흐르지 않게 하는 심장의 문
+Myocardium|심장벽을 이루는 근육층
+Aorta|좌심실에서 나오는 가장 큰 동맥
+Artery|심장에서 나온 혈액을 조직으로 보내는 혈관
+Vein|조직의 혈액을 심장으로 되돌리는 혈관
+Capillary|동맥과 정맥을 잇고 물질 교환이 일어나는 가장 가는 혈관
+Hypertension|혈압이 지속적으로 높은 상태
+Myocardial infarction|관상동맥이 막혀 심근이 괴사하는 질환
+Angina pectoris|심근 허혈로 생기는 가슴 통증
+Heart failure|심장이 필요한 만큼 혈액을 내보내지 못하는 상태
+Arrhythmia|심장 박동의 속도나 리듬이 불규칙한 상태
+Atherosclerosis|동맥 벽에 지방이 쌓여 좁아지고 딱딱해지는 질환
+Thrombosis|혈관 안에 혈전(피떡)이 생겨 혈류를 막는 상태
+Dyslipidemia|콜레스테롤·중성지방 등 혈중 지질 수치가 비정상인 상태
+Edema|조직 사이에 체액이 고여 붓는 증상
+Palpitation|심장이 빠르거나 불규칙하게 뛰는 것을 느끼는 증상
+Tachycardia|맥박이 정상보다 빠른 상태 (성인 분당 100회 초과)
+Esophagus|입에서 위로 음식을 보내는 근육성 관
+Stomach|음식을 저장하고 위액으로 소화를 시작하는 장기
+Duodenum|위에 이어지는 소장의 첫 부분
+Small intestine|소화와 영양소 흡수가 주로 일어나는 장
+Large intestine|수분을 흡수하고 대변을 만드는 장
+Rectum|대변이 배출 전 머무는 대장의 끝부분
+Liver|해독·담즙 생성·대사를 하는 가장 큰 장기
+Gallbladder|담즙을 저장·농축하는 주머니
+Pancreas|소화효소와 인슐린 등 호르몬을 만드는 장기
+Gastritis|위 점막의 염증
+Peptic ulcer|위·십이지장 점막이 깊게 손상된 상태
+Hepatitis|간의 염증 (바이러스, 알코올, 약물 등이 원인)
+Cirrhosis|간세포가 파괴되고 섬유화되어 간이 딱딱해지는 만성 질환
+Appendicitis|충수돌기의 염증으로 우하복부 통증이 특징
+Cholecystitis|담낭의 염증 (주로 담석이 원인)
+Pancreatitis|췌장의 염증
+Nausea|토할 것 같은 불쾌한 느낌
+Vomiting|위 내용물이 입으로 강하게 나오는 것
+Hematemesis|피를 토하는 것 (상부 위장관 출혈)
+Diarrhea|묽은 변을 자주 보는 증상
+Constipation|배변 횟수가 줄고 변이 딱딱해 보기 힘든 상태
+Jaundice|빌리루빈 증가로 피부와 눈 흰자가 노랗게 되는 증상
+Brain|사고·감각·운동을 조절하는 중추신경계 기관
+Cerebrum|사고·기억·운동·감각을 담당하는 뇌의 가장 큰 부분
+Cerebellum|균형과 운동 협응을 조절하는 뇌 부위
+Brainstem|호흡·심박 등 생명 기능을 조절하는 뇌 부위
+Spinal cord|뇌와 몸을 잇는 신경 다발 (척추관 안)
+Meninges|뇌와 척수를 감싸는 세 겹의 막
+Neuron|신경계의 기본 단위인 신경세포
+Cranial nerve|뇌에서 직접 나오는 12쌍의 신경
+Stroke (CVA)|뇌혈관이 막히거나 터져 뇌 기능이 갑자기 손상되는 질환
+Epilepsy|뇌 신경세포의 비정상 방전으로 발작이 반복되는 질환
+Meningitis|뇌·척수를 싼 수막의 염증
+Hemiplegia|몸의 한쪽(좌 또는 우)이 마비된 상태
+Parkinson's disease|떨림·경직·느린 움직임이 나타나는 퇴행성 뇌질환
+Cerebral palsy|출생 전후 뇌 손상으로 생기는 운동·자세 장애
+Seizure|뇌의 비정상 전기 활동으로 생기는 갑작스러운 발작
+Headache|머리 부위의 통증
+Dizziness|어지럽거나 중심을 잡기 힘든 느낌
+Aphasia|뇌 손상으로 말하기·이해하기 능력이 손상된 상태
+Bone|몸을 지지하고 장기를 보호하며 칼슘을 저장하는 단단한 조직
+Joint|뼈와 뼈가 만나는 부위
+Muscle|수축해서 움직임을 만드는 조직
+Tendon|근육을 뼈에 붙이는 질긴 결합조직
+Ligament|뼈와 뼈를 연결해 관절을 안정시키는 조직
+Cartilage|관절면을 덮어 충격을 흡수하는 탄력 있는 조직
+Vertebra|척주를 이루는 개별 뼈
+Skull|뇌를 보호하는 머리뼈
+Fracture|뼈가 부러지거나 금이 간 상태
+Dislocation|관절을 이루는 뼈가 제자리를 벗어난 상태
+Osteoporosis|뼈의 양이 줄어 쉽게 부러지는 상태
+Osteoarthritis|관절 연골이 닳아 통증과 강직이 생기는 퇴행성 질환
+Rheumatoid arthritis|면역 이상으로 관절 안쪽 막에 염증이 생기는 자가면역 질환
+Gout|요산 결정이 관절에 쌓여 생기는 급성 관절염
+Scoliosis|척추가 옆으로 휜 상태
+Herniated disc|추간판(원반)이 밀려 나와 신경을 누르는 상태
+Kidney|혈액을 걸러 소변을 만들고 체액을 조절하는 장기
+Ureter|신장에서 방광으로 소변을 보내는 관
+Bladder|소변을 저장하는 근육 주머니
+Urethra|방광에서 몸 밖으로 소변을 내보내는 관
+Nephron|소변을 만드는 신장의 기능적 단위
+Urinary tract infection|요로(요도·방광·신장 등)에 생긴 세균 감염
+Cystitis|방광의 염증
+Glomerulonephritis|신장의 사구체(여과 단위)에 생긴 염증
+Nephrotic syndrome|단백뇨, 저알부민혈증, 부종이 나타나는 증후군
+Renal failure|신장이 노폐물과 수분을 제대로 걸러내지 못하는 상태
+Urolithiasis|요로에 돌(결석)이 생긴 상태
+Dysuria|소변볼 때 아프거나 불편한 증상
+Hematuria|소변에 피가 섞여 나오는 것
+Oliguria|소변량이 비정상적으로 줄어든 상태 (하루 약 400mL 미만)
+Pituitary gland|다른 내분비샘을 조절하는 뇌 아래의 작은 샘
+Thyroid gland|목 앞쪽에서 대사를 조절하는 호르몬을 만드는 샘
+Adrenal gland|신장 위에 있고 코르티솔 등을 분비하는 샘
+Pancreatic islet|췌장에서 인슐린·글루카곤을 분비하는 세포 집단
+Hormone|혈액을 타고 다른 기관의 기능을 조절하는 화학물질
+Insulin|혈당을 낮추는 췌장 호르몬
+Diabetes mellitus|인슐린 부족·저항으로 혈당이 높아지는 대사 질환
+Hyperthyroidism|갑상선 호르몬 과다로 대사가 항진된 상태
+Hypothyroidism|갑상선 호르몬 부족으로 대사가 느려진 상태
+Cushing syndrome|코르티솔 과다로 생기는 증후군 (얼굴이 둥글어짐 등)
+Hypoglycemia|혈당이 정상보다 낮은 상태 (식은땀·떨림 등)
+Hyperglycemia|혈당이 정상보다 높은 상태
+Polyuria|소변량이 비정상적으로 많은 증상
+Schizophrenia|환청·망상, 와해된 사고와 행동 등이 나타나는 만성 정신질환
+Bipolar disorder|들뜬 조증(또는 경조증)과 우울 삽화가 반복되는 기분장애
+Intellectual disability|발달기에 시작되는 지적 기능과 일상 적응 능력의 제한
+Obsessive-compulsive disorder|원치 않는 생각(강박사고)과 이를 줄이려는 반복 행동(강박행동)
+Autism spectrum disorder|사회적 상호작용의 어려움과 반복 행동을 보이는 신경발달장애
+Hypochondriasis|심각한 질병이 있다는 과도한 두려움 (DSM-5에서 질병불안장애)
+Dementia|기억력·판단력 등 인지 기능이 떨어져 일상생활이 어려워지는 상태
+Anxiety disorder|과도하고 지속적인 불안으로 일상에 지장을 받는 질환
+Conversion disorder|신경학적 원인 없이 마비·실명 등 신체 증상이 나타나는 질환
+Depression|우울한 기분과 흥미 상실이 오래 지속되는 기분장애
+Anorexia nervosa|체중 증가에 대한 극심한 두려움으로 먹는 것을 심하게 제한하는 섭식장애
+Delirium|의식·주의가 갑자기 흐려지고 혼돈이 나타나는 급성 상태
+Insomnia|잠들기 어렵거나 유지하기 힘든 수면 문제
+Hallucination|실제 자극 없이 보이거나 들리는 지각 경험 (환시, 환청 등)
+Delusion|사실과 맞지 않는데도 굳게 믿는 잘못된 생각
+Bacteria|핵막이 없는 단세포 미생물, 항생제로 치료
+Virus|숙주 세포 안에서만 증식하는 아주 작은 병원체, 항생제가 듣지 않음
+Fungus|곰팡이·효모 등 진핵 미생물
+Parasite|다른 생물에 붙어 영양을 얻는 생물
+Protozoa|단세포 진핵 미생물 (말라리아원충 등)
+Staphylococcus aureus|피부·화농성 감염의 주요 원인인 그람양성 구균
+Streptococcus|인후염·폐렴 등을 일으키는 그람양성 사슬 모양 구균
+Enterococcus|장에 사는 그람양성 구균, 요로감염·병원감염의 원인
+Escherichia coli|장에 사는 그람음성 막대균, 요로감염의 주된 원인
+Pseudomonas aeruginosa|항생제 내성이 흔한 그람음성균, 화상·병원감염의 원인
+Mycobacterium tuberculosis|결핵을 일으키는 항산균
+Mycobacterium leprae|한센병을 일으키는 항산균
+Helicobacter pylori|위염·소화성 궤양과 관련된 위 점막 세균
+Salmonella|식중독·장티푸스의 원인이 되는 그람음성균
+Clostridioides difficile|항생제 사용 후 위막성 대장염을 일으키는 포자 형성균
+MRSA|메티실린 등 많은 항생제에 내성인 황색포도알균
+VRE|반코마이신에 내성을 가진 장알균
+Influenza virus|독감을 일으키는 RNA 바이러스
+HIV|면역세포(CD4 T세포)를 파괴해 후천성면역결핍증을 일으키는 바이러스
+Hepatitis B virus|혈액·체액으로 전파되는 간염 바이러스
+Candida albicans|구강·질 칸디다증을 일으키는 효모균
+Hansen's disease|피부와 말초신경을 침범하는 만성 감염병, 치료 가능
+Nosocomial infection|입원 후(보통 48시간 이후) 병원에서 새로 얻은 감염
+Asepsis|병원체가 없는 상태를 유지하는 것
+Disinfection|병원체 대부분을 죽이는 처치 (포자는 제외)
+Sterilization|포자를 포함한 모든 미생물을 완전히 제거하는 처치
+Antibiotic|세균을 죽이거나 증식을 억제하는 약물
+Standard precautions|모든 환자에게 적용하는 기본 감염예방 지침 (손위생, 보호구 등)`.split("\n").map(l=>l.split("|")));
+Object.assign(DEF,Object.fromEntries(`Pleural effusion|흉막강에 비정상적으로 체액이 고인 상태
+Pulmonary embolism|혈전 등이 폐동맥을 막아 폐 혈류가 차단되는 응급 질환
+Hemoptysis|기침과 함께 기도·폐에서 피가 나오는 것
+Wheezing|좁아진 기도로 공기가 지나가며 나는 쌕쌕거리는 소리
+Cardiac arrest|심장이 효과적으로 뛰지 못해 혈액 순환이 멈춘 응급 상태
+Shock|조직에 혈액과 산소가 충분히 공급되지 못하는 위급한 상태
+Varicose veins|정맥 판막 이상으로 다리 정맥이 늘어나 꼬불꼬불해진 상태
+Hypotension|혈압이 정상보다 낮은 상태
+Bradycardia|맥박이 정상보다 느린 상태 (성인 분당 60회 미만)
+Colon|대장의 대부분을 이루는 부분 (상행·횡행·하행·S상 결장)
+Gastroesophageal reflux disease|위 내용물이 식도로 역류해 속쓰림 등을 일으키는 질환
+Hemorrhoid|항문과 직장 주변 혈관 조직이 부풀거나 늘어난 상태
+Melena|상부 위장관 출혈로 생기는 검고 끈적한 변
+Ascites|복강 안에 체액이 고인 상태
+Alzheimer's disease|뇌세포가 서서히 손상되어 기억력이 떨어지는 가장 흔한 치매 원인
+Increased intracranial pressure|두개골 안의 압력이 높아진 상태, 두통·구토·의식저하가 나타남
+Syncope|뇌혈류 감소로 일시적으로 의식을 잃고 쓰러지는 것
+Osteomyelitis|뼈와 골수에 생긴 세균 감염
+Sprain|인대가 늘어나거나 일부 찢어진 손상
+Contracture|근육·힘줄이 짧아져 관절이 굳고 움직임이 제한된 상태
+Benign prostatic hyperplasia|전립선이 커져 소변 보기 힘들어지는 질환
+Incontinence|소변이나 대변을 의지와 관계없이 흘리는 것
+Proteinuria|소변에 단백질이 비정상적으로 많이 나오는 것
+Diabetic ketoacidosis|인슐린 부족으로 케톤이 쌓여 산성으로 기우는 당뇨병의 급성 합병증
+Posttraumatic stress disorder|충격적 사건 후 재경험·회피·과각성 증상이 지속되는 질환
+Mania|기분이 비정상적으로 들뜨고 활동량·말이 늘어난 상태
+Suicidal ideation|스스로 목숨을 끊는 생각, 위험 평가와 안전 확보가 간호의 핵심
+Blood|혈장과 혈구로 이루어진 체액으로 산소·영양분을 운반
+Red blood cell|헤모글로빈으로 산소를 운반하는 혈구
+White blood cell|감염과 염증에 대항하는 면역 혈구
+Platelet|혈액 응고에 관여하는 작은 혈구
+Lymph node|림프액을 거르고 면역 반응이 일어나는 작은 기관
+Anemia|적혈구나 혈색소가 부족해 산소 운반 능력이 떨어진 상태
+Leukemia|조혈세포가 비정상적으로 증식하는 혈액암
+Hemophilia|응고 인자 결핍으로 출혈이 잘 멎지 않는 유전 질환
+Allergy|특정 물질에 대해 면역계가 과민하게 반응하는 것
+Anaphylaxis|전신에 갑자기 나타나는 중증 알레르기 반응, 즉시 응급 처치 필요
+Ecchymosis|피부 밑 출혈로 생긴 넓은 멍
+Antibody|항원에 결합해 제거를 돕는 면역 단백질
+Immunity|병원체와 이물질로부터 몸을 방어하는 능력
+Skin|몸을 덮어 보호하고 체온을 조절하는 가장 큰 기관
+Epidermis|피부의 가장 바깥층
+Dermis|표피 아래의 혈관·신경·땀샘이 있는 층
+Burn|열·화학물질·전기 등으로 생긴 피부와 조직의 손상
+Dermatitis|피부의 염증 (발적·가려움·발진)
+Herpes zoster|수두 바이러스가 재활성화되어 신경을 따라 수포가 생기는 질환
+Cellulitis|피부 밑 연조직에 퍼지는 세균 감염 (붉고 열감·통증)
+Rash|피부에 나타나는 붉은 반점이나 두드러기 등의 변화
+Pruritus|긁고 싶게 만드는 피부의 불쾌한 감각
+Wound|피부나 조직이 끊어지거나 손상된 상태`.split("\n").map(l=>l.split("|"))));
+function build(){let n=0,out=[];for(const u in RAW)RAW[u].split('\n').forEach(l=>{const[t,en,ko,old,nw]=l.split('|');out.push({id:'d'+n++,en,ko,old:old||'',nw:nw||'',unit:u,tag:TAGS[t],note:DEF[en]||''})});return out}
+
+
+const $=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const p2=n=>String(n).padStart(2,'0');
+const ymd=(d=new Date())=>`${d.getFullYear()}-${p2(d.getMonth()+1)}-${p2(d.getDate())}`;
+const COLORS=['#1d4ed8','#b42318','#05603a','#a14a05','#6d28d9','#0e7490','#be185d','#374151'];
+const ICONS={
+book:'<path d="M30 26h50a10 10 0 0 1 10 10v58H40a10 10 0 0 1-10-10zM30 84a10 10 0 0 1 10-10h50"/>',
+cross:'<rect x="45" y="20" width="30" height="80" rx="8"/><rect x="20" y="45" width="80" height="30" rx="8"/>',
+lung:'<path d="M55 30v40c0 20-8 30-22 30-12 0-18-8-16-24l6-30c3-14 14-22 22-22M65 30v40c0 20 8 30 22 30 12 0 18-8 16-24l-6-30c-3-14-14-22-22-22M60 18v32"/>',
+heart:'<path d="M60 100C20 72 14 44 30 30c12-10 24-4 30 8 6-12 18-18 30-8 16 14 10 42-30 70z"/>',
+stomach:'<path d="M45 20v18c0 10-20 14-22 36-2 22 18 30 38 26 22-4 30-22 22-36-6-10-20-8-24-20V20"/>',
+brain:'<path d="M60 25c-8-10-26-6-28 8-10 2-14 14-8 22-6 8-2 20 8 22 2 14 18 16 28 6 10 10 26 8 28-6 10-2 14-14 8-22 6-8 2-20-8-22-2-14-20-18-28-8zM60 25v62"/>',
+bone:'<path d="M42 78L78 42" stroke-width="12"/><circle cx="34" cy="74" r="10"/><circle cx="46" cy="86" r="10"/><circle cx="74" cy="34" r="10"/><circle cx="86" cy="46" r="10"/>',
+kidney:'<path d="M70 22c-26-6-48 10-46 38 2 28 24 42 42 36 12-4 8-18-2-22-10-4-8-18 4-22 14-4 16-26 2-30z"/>',
+gland:'<ellipse cx="38" cy="60" rx="18" ry="28"/><ellipse cx="82" cy="60" rx="18" ry="28"/><path d="M56 60h8"/>',
+mind:'<path d="M44 100V78C28 70 22 50 34 34c12-16 40-16 52 0 8 12 6 26-2 36l-4 4v26z"/><circle cx="60" cy="52" r="6"/>',
+drop:'<path d="M60 20C40 48 30 62 30 76a30 30 0 0 0 60 0C90 62 80 48 60 20z"/>',
+skin:'<rect x="20" y="30" width="80" height="14" rx="7"/><rect x="20" y="50" width="80" height="18" rx="7"/><rect x="20" y="74" width="80" height="22" rx="7"/>',
+microbe:'<circle cx="60" cy="60" r="22"/><path d="M60 38V20M60 100V82M38 60H20M100 60H82M44 44L32 32M88 88L76 76M76 44l12-12M32 88l12-12"/>'};
+const ICON_BY_UNIT={'기본간호':'cross','호흡기계':'lung','심혈관계':'heart','소화기계':'stomach','신경계':'brain','근골격계':'bone','비뇨기계':'kidney','내분비계':'gland','정신건강':'mind','혈액·면역':'drop','피부계':'skin','미생물':'microbe'};
+const svg=(k,c,sz=96)=>`<svg viewBox="0 0 120 120" width="${sz}" height="${sz}" fill="${c}22" stroke="${c}" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICONS[k]||ICONS.book}</svg>`;
+
+function seed(){
+  const ws=build(),names=[...new Set(ws.map(w=>w.unit))],t0=Date.now()-864e5,d0=ymd(new Date(t0));
+  return{bms:names.map((n,i)=>({id:'b'+i,name:n,color:COLORS[i%COLORS.length],icon:ICON_BY_UNIT[n]||'book'})),
+    words:ws.map((w,i)=>({id:'w'+i,t:t0+i,bm:'b'+names.indexOf(w.unit),en:w.en,date:d0,img:'',
+      desc:[w.nw||w.ko,w.old?`구용어 ${w.old} → 신용어 ${w.nw}`:'',w.note].filter(Boolean).join('\n')}))}}
+const KEY='index_v1';
+let S=null;try{S=JSON.parse(localStorage.getItem(KEY)||'null')}catch(e){}
+if(!S||!S.words||!S.bms){S=seed();try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
+function persist(){try{localStorage.setItem(KEY,JSON.stringify(S));return true}catch(e){toast('저장 공간이 부족해요. 사진을 줄이거나 단어를 정리해 주세요.');return false}}
+const V0=()=>({tab:'home',bm:'all',sort:'bm',i:0,flip:false,editW:null,editB:null,img:'',confirmed:false,lastBm:null,bmName:null,pick:{color:COLORS[0],icon:'book'}});
+let V=V0();
+
+const norm=s=>s.toLowerCase().replace(/[\s'’\-.,()\/&]/g,'');
+function dist(a,b){const m=a.length,n=b.length,d=[];for(let i=0;i<=m;i++)d[i]=[i];for(let j=1;j<=n;j++)d[0][j]=j;
+  for(let i=1;i<=m;i++)for(let j=1;j<=n;j++){const c=a[i-1]===b[j-1]?0:1;d[i][j]=Math.min(d[i-1][j]+1,d[i][j-1]+1,d[i-1][j-1]+c);
+    if(i>1&&j>1&&a[i-1]===b[j-2]&&a[i-2]===b[j-1])d[i][j]=Math.min(d[i][j],d[i-2][j-2]+1)}return d[m][n]}
+const cap=s=>s===s.toLowerCase()?s[0].toUpperCase()+s.slice(1):s;
+const bmOf=id=>S.bms.find(b=>b.id===id)||{name:'미분류',color:'#374151',icon:'book'};
+const cnt=id=>S.words.filter(w=>w.bm===id).length;
+function deck(){
+  const bo=id=>S.bms.findIndex(b=>b.id===id);
+  const l=S.words.filter(w=>V.bm==='all'||w.bm===V.bm);
+  return l.sort(V.sort==='date'?(a,b)=>b.date.localeCompare(a.date)||b.t-a.t:(a,b)=>bo(a.bm)-bo(b.bm)||a.t-b.t)}
+function addBm(name,color,icon){
+  const ex=S.bms.find(b=>b.name===name);if(ex)return ex.id;
+  const id='b'+Date.now();S.bms.push({id,name,color:color||COLORS[S.bms.length%COLORS.length],icon:icon||'book'});persist();return id}
+let tt;function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('on');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('on'),2400)}
+function sheet(t,m,btns){const s=$('#sheet');
+  s.innerHTML=`<div class="sh" role="dialog" aria-modal="true"><b>${esc(t)}</b><p>${esc(m)}</p>${btns.map((b,i)=>`<button class="btn ${b.c||''}" data-sh="${i}">${esc(b.l)}</button>`).join('')}</div>`;
+  s.hidden=false;s._b=btns}
+
+function go(v,keep){
+  if(v==='add'&&!keep){V.editW=null;V.img='';V.confirmed=false}
+  V.tab=v;['home','study','add','bm'].forEach(t=>$('#v-'+t).hidden=t!==v);
+  document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('on',b.dataset.v===v));
+  ({home,study,add:addv,bm:bmv})[v]();window.scrollTo(0,0)}
+
+function home(){
+  const today=ymd(),n=S.words.filter(w=>w.date===today).length;
+  const rec=[...S.words].sort((a,b)=>b.date.localeCompare(a.date)||b.t-a.t).slice(0,5);
+  $('#v-home').innerHTML=`<h1>index</h1><p class="sub">간호 의학용어 단어장</p>
+  <div class="panel"><p>영어 의학용어를 카드로 넘겨 보며 한글 뜻과 함께 익혀요. 책갈피로 계통별로 나누고, 카드를 눌러 뒤집고, 스피커 버튼으로 발음도 들어 보세요.</p><button class="btn" data-act="go" data-v="study">단어장 보기</button></div>
+  <div class="stats"><div><b>${S.words.length}</b><span>전체 단어</span></div><div><b>${S.bms.length}</b><span>책갈피</span></div><div><b>${n}</b><span>오늘 등록</span></div></div>
+  <h2>책갈피 <button class="link" data-act="go" data-v="bm">관리</button></h2>
+  <div class="chips">${S.bms.map(b=>`<button class="chip" data-act="openbm" data-id="${b.id}" style="--c:${b.color}"><i></i>${esc(b.name)} <small>${cnt(b.id)}</small></button>`).join('')||'<span class="muted">책갈피가 없어요.</span>'}</div>
+  <form class="inline" data-sub="quickbm" autocomplete="off"><input name="n" placeholder="새 책갈피 이름" maxlength="20" aria-label="새 책갈피 이름"><button class="btn sm">추가</button></form>
+  <h2>최근 등록 단어 <button class="link" data-act="go" data-v="add">+ 단어 등록</button></h2>
+  ${rec.map(w=>`<button class="row" data-act="openword" data-id="${w.id}" style="--c:${bmOf(w.bm).color}"><b>${esc(w.en)}</b><em>${w.date}</em><span>${esc(w.desc.split('\n')[0])}</span></button>`).join('')||'<div class="empty">아직 등록한 단어가 없어요.</div>'}`}
+
+function descHtml(d){
+  return d.split('\n').filter(l=>l.trim()).map((l,i)=>{
+    const m=l.match(/^구용어 (.+) → 신용어 (.+)$/);
+    if(m)return `<p class="cn"><span class="old">${esc(m[1])}</span> → <span class="new">${esc(m[2])}</span></p>`;
+    return i?`<p>${esc(l)}</p>`:`<p class="ko">${esc(l)}</p>`}).join('')}
+function study(){
+  const d=deck();if(V.i>=d.length)V.i=Math.max(0,d.length-1);
+  const w=d[V.i],b=w?bmOf(w.bm):null;
+  $('#v-study').innerHTML=`<div class="bar">
+   <select data-chg="bm" aria-label="책갈피 선택"><option value="all">전체 책갈피</option>${S.bms.map(x=>`<option value="${x.id}" ${V.bm===x.id?'selected':''}>${esc(x.name)}</option>`).join('')}</select>
+   <select data-chg="sort" aria-label="정렬" style="max-width:112px"><option value="bm" ${V.sort==='bm'?'selected':''}>책갈피순</option><option value="date" ${V.sort==='date'?'selected':''}>등록일순</option></select>
+   <button class="icon" data-act="tts" aria-label="음성 재생"><svg class="s" viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/></svg></button></div>
+  ${w?`<div class="scene"><div class="card ${V.flip?'flip':''}" data-act="flip" role="button" tabindex="0" aria-label="카드 뒤집기" style="--c:${b.color}">
+   <div class="face"><div class="art">${w.img?`<img src="${w.img}" alt="">`:svg(b.icon,b.color,110)}</div><h2 class="en" style="display:block">${esc(w.en)}</h2><span class="tagb">${esc(b.name)}</span><small>눌러서 한글 설명 보기</small></div>
+   <div class="face back">${descHtml(w.desc)}<small>등록일 ${w.date}</small></div></div></div>
+  <div class="pager"><button class="btn ghost" data-act="prev" ${V.i?'':'disabled'}>이전</button><span>${V.i+1} / ${d.length}</span><button class="btn" data-act="next" ${V.i<d.length-1?'':'disabled'}>다음</button></div>
+  <div class="tools2"><button class="link" data-act="editw" data-id="${w.id}">수정</button><button class="link danger" data-act="delw" data-id="${w.id}">삭제</button></div>
+  <p class="muted" style="text-align:center">스피커: 앞면은 영어 발음, 뒷면은 한글 뜻을 읽어줘요. 좌우로 밀어도 넘어가요.</p>`
+  :`<div class="empty">이 책갈피에는 아직 단어가 없어요.<br><br><button class="btn" data-act="go" data-v="add">단어 등록하기</button></div>`}`}
+function speak(){
+  if(!('speechSynthesis' in window))return toast('이 브라우저는 음성 재생을 지원하지 않아요.');
+  const w=deck()[V.i];if(!w)return;
+  const u=new SpeechSynthesisUtterance(V.flip?w.desc.split('\n')[0]:w.en);
+  u.lang=V.flip?'ko-KR':'en-US';u.rate=V.flip?1:.85;speechSynthesis.cancel();speechSynthesis.speak(u)}
+
+function addv(){
+  const e=V.editW?S.words.find(w=>w.id===V.editW):null,sel=e?e.bm:(V.lastBm&&bmOf(V.lastBm).id?V.lastBm:(S.bms[0]||{}).id);
+  $('#v-add').innerHTML=`<h1>${e?'단어 수정':'단어 등록'}</h1><p class="sub">책갈피를 고르고 단어와 설명을 적어 주세요.</p>
+  <form class="panel" data-sub="saveword" autocomplete="off">
+   <label for="fbm">책갈피</label><select id="fbm" name="bm" data-chg="bmsel">${S.bms.map(b=>`<option value="${b.id}" ${b.id===sel?'selected':''}>${esc(b.name)}</option>`).join('')}<option value="__new">+ 새 책갈피 만들기</option></select>
+   <input name="newbm" placeholder="새 책갈피 이름" maxlength="20" hidden style="margin-top:8px" aria-label="새 책갈피 이름">
+   <label for="fen">단어 (영어)</label><input id="fen" name="en" required value="${esc(e?e.en:'')}" placeholder="예: Pneumonia" autocapitalize="off" autocorrect="off" spellcheck="false">
+   <label for="fde">설명</label><textarea id="fde" name="desc" rows="5" required placeholder="첫 줄: 한글 뜻 (예: 폐렴)&#10;다음 줄부터: 자세한 설명">${esc(e?e.desc:'')}</textarea>
+   <label for="fdt">등록일</label><input id="fdt" type="date" name="date" value="${e?e.date:ymd()}" required>
+   <label for="fim">삽화 (선택)</label><input id="fim" type="file" name="img" accept="image/*"><div id="imgprev"></div>
+   <div class="warn" id="warn" role="alert" hidden></div>
+   <p class="actions"><button class="btn">${e?'수정 저장':'등록하기'}</button>${e?'<button type="button" class="btn ghost" data-act="cancel">취소</button>':''}</p></form>`;
+  prev()}
+function prev(){$('#imgprev').innerHTML=V.img?`<img class="prev" src="${V.img}" alt="선택한 삽화"><button type="button" class="link danger" data-act="rmimg">사진 지우기</button>`:'<small class="muted">사진이 없으면 책갈피 일러스트가 표시돼요.</small>'}
+function warn(m){const w=$('#warn');w.textContent=m;w.hidden=false}
+function shrink(file){return new Promise((ok,no)=>{const r=new FileReader();r.onload=()=>{const im=new Image();im.onload=()=>{
+  const k=Math.min(1,480/Math.max(im.width,im.height)),c=document.createElement('canvas');c.width=Math.round(im.width*k);c.height=Math.round(im.height*k);
+  c.getContext('2d').drawImage(im,0,0,c.width,c.height);ok(c.toDataURL('image/jpeg',.75))};im.onerror=no;im.src=r.result};r.onerror=no;r.readAsDataURL(file)})}
+function saveword(f){
+  const fd=new FormData(f);let bm=fd.get('bm');
+  const en=String(fd.get('en')).replace(/\s+/g,' ').trim(),desc=String(fd.get('desc')).trim().replace(/\n{3,}/g,'\n\n');
+  if(!/^[A-Za-z][A-Za-z0-9'’()\/.,&\- ]*$/.test(en)||!/[a-z]{2}/i.test(en))return warn('영어 단어를 알파벳으로 입력해 주세요.');
+  if(!desc)return warn('설명을 입력해 주세요.');
+  const n=norm(en),others=S.words.filter(w=>w.id!==V.editW);
+  const same=others.find(w=>norm(w.en)===n);if(same)return warn(`이미 등록된 단어예요: ${same.en}`);
+  if(!V.confirmed){
+    const near=others.find(w=>{const m=norm(w.en);return n.length>=5&&Math.abs(m.length-n.length)<=2&&dist(n,m)<=(n.length>=9?2:1)});
+    if(near){V.confirmed=true;return warn(`"${near.en}"와 철자가 비슷해요. 오타인지 확인하고, 맞다면 한 번 더 눌러 등록하세요.`)}}
+  if(bm==='__new'){const nm=String(fd.get('newbm')).trim();if(!nm)return warn('새 책갈피 이름을 입력해 주세요.');bm=addBm(nm)}
+  const rec={bm,en:cap(en),desc,date:fd.get('date')||ymd(),img:V.img};
+  if(V.editW)Object.assign(S.words.find(w=>w.id===V.editW),rec);else S.words.push({id:'w'+Date.now(),t:Date.now(),...rec});
+  if(!persist()){if(!V.editW)S.words.pop();return}
+  V.lastBm=bm;V.confirmed=false;
+  if(V.editW){const id=V.editW;V.editW=null;A.openword({id})}else{V.img='';toast(`"${rec.en}" 등록했어요`);addv()}}
+
+function bmv(){
+  const e=V.editB?S.bms.find(b=>b.id===V.editB):null,pk=V.pick,nm=V.bmName!==null?V.bmName:(e?e.name:'');
+  $('#v-bm').innerHTML=`<h1>책갈피</h1><p class="sub">단어를 계통·주제별로 나누어 관리해요.</p>
+  <form class="panel" data-sub="savebm" autocomplete="off"><label style="margin-top:0" for="bn">${e?'책갈피 수정':'새 책갈피'}</label><input id="bn" name="n" required maxlength="20" value="${esc(nm)}" placeholder="예: 생식기계">
+   <label>색깔</label><div class="sw">${COLORS.map(c=>`<button type="button" class="swatch ${c===pk.color?'on':''}" data-act="pcolor" data-c="${c}" style="background:${c}" aria-label="색 ${c}"></button>`).join('')}</div>
+   <label>아이콘</label><div class="sw">${Object.keys(ICONS).map(k=>`<button type="button" class="ico ${k===pk.icon?'on':''}" data-act="picon" data-k="${k}" aria-label="아이콘 ${k}">${svg(k,pk.color,32)}</button>`).join('')}</div>
+   <p class="actions"><button class="btn">${e?'저장':'추가'}</button>${e?'<button type="button" class="btn ghost" data-act="cancelbm">취소</button>':''}</p></form>
+  ${S.bms.map(b=>`<div class="bmrow" style="--c:${b.color}">${svg(b.icon,b.color,36)}<div><b>${esc(b.name)}</b><small>${cnt(b.id)}개 단어</small></div><button class="link" data-act="openbm" data-id="${b.id}">열기</button><button class="link" data-act="editbm" data-id="${b.id}">수정</button><button class="link danger" data-act="delbm" data-id="${b.id}">삭제</button></div>`).join('')}
+  <p class="foot"><button class="link danger" data-act="reset">처음 상태로 초기화</button></p>`}
+const keepName=()=>{const i=$('#v-bm [name=n]');if(i)V.bmName=i.value};
+
+const A={
+ go:d=>go(d.v),
+ openbm:d=>{V.bm=d.id;V.sort='bm';V.i=0;V.flip=false;go('study')},
+ openword:d=>{V.bm='all';V.sort='date';V.flip=false;V.i=Math.max(0,deck().findIndex(x=>x.id===d.id));go('study')},
+ flip:()=>{const c=$('.card');if(c){c.classList.toggle('flip');V.flip=c.classList.contains('flip')}},
+ prev:()=>{if(V.i>0){V.i--;V.flip=false;study()}},
+ next:()=>{if(V.i<deck().length-1){V.i++;V.flip=false;study()}},
+ tts:speak,
+ editw:d=>{const w=S.words.find(x=>x.id===d.id);V.editW=d.id;V.img=w.img||'';V.confirmed=false;go('add',true)},
+ delw:d=>{const w=S.words.find(x=>x.id===d.id);sheet(`"${w.en}" 삭제`,'이 단어를 삭제할까요?',[{l:'삭제',c:'dang',f:()=>{S.words=S.words.filter(x=>x.id!==d.id);persist();V.flip=false;study()}},{l:'취소',c:'ghost'}])},
+ cancel:()=>{V.editW=null;go('study')},
+ rmimg:()=>{V.img='';prev()},
+ pcolor:d=>{keepName();V.pick.color=d.c;bmv()},
+ picon:d=>{keepName();V.pick.icon=d.k;bmv()},
+ editbm:d=>{const b=S.bms.find(x=>x.id===d.id);V.editB=d.id;V.bmName=null;V.pick={color:b.color,icon:b.icon};bmv();window.scrollTo(0,0)},
+ cancelbm:()=>{V.editB=null;V.bmName=null;V.pick={color:COLORS[0],icon:'book'};bmv()},
+ delbm:d=>{
+  const b=S.bms.find(x=>x.id===d.id),n=cnt(d.id);
+  const rm=()=>{S.bms=S.bms.filter(x=>x.id!==d.id);if(V.bm===d.id)V.bm='all';persist();bmv()};
+  if(!n)return sheet(`'${b.name}' 삭제`,'이 책갈피를 삭제할까요?',[{l:'삭제',c:'dang',f:rm},{l:'취소',c:'ghost'}]);
+  sheet(`'${b.name}' 삭제`,`이 책갈피에 단어 ${n}개가 있어요. 어떻게 할까요?`,[
+   {l:'단어도 함께 삭제',c:'dang',f:()=>{S.words=S.words.filter(w=>w.bm!==d.id);rm()}},
+   {l:"단어는 '미분류'로 이동",f:()=>{const u=addBm('미분류','#374151','book');S.words.forEach(w=>{if(w.bm===d.id)w.bm=u});rm()}},
+   {l:'취소',c:'ghost'}])},
+ reset:()=>sheet('처음 상태로 초기화','직접 등록한 단어와 책갈피가 모두 사라지고 기본 단어 목록으로 돌아가요.',[{l:'초기화',c:'dang',f:()=>{S=seed();V=V0();persist();go('home')}},{l:'취소',c:'ghost'}])
+};
+const SUB={
+ quickbm:f=>{const n=f.elements.n.value.trim();if(!n)return;addBm(n);toast(`"${n}" 책갈피를 만들었어요`);home()},
+ saveword,
+ savebm:f=>{
+  const n=f.elements.n.value.trim();if(!n)return;
+  const dup=S.bms.find(b=>b.name===n&&b.id!==V.editB);if(dup)return toast('같은 이름의 책갈피가 있어요.');
+  if(V.editB){Object.assign(S.bms.find(b=>b.id===V.editB),{name:n,color:V.pick.color,icon:V.pick.icon})}else addBm(n,V.pick.color,V.pick.icon);
+  persist();toast('저장했어요');V.editB=null;V.bmName=null;V.pick={color:COLORS[0],icon:'book'};bmv()}};
+
+document.addEventListener('click',e=>{
+  const sh=e.target.closest('[data-sh]');
+  if(sh){const s=$('#sheet'),b=s._b[+sh.dataset.sh];s.hidden=true;if(b.f)b.f();return}
+  if(e.target.id==='sheet'){e.target.hidden=true;return}
+  const a=e.target.closest('[data-act]');if(a&&A[a.dataset.act])A[a.dataset.act](a.dataset)});
+document.addEventListener('submit',e=>{e.preventDefault();const f=e.target;if(SUB[f.dataset.sub])SUB[f.dataset.sub](f)});
+document.addEventListener('input',e=>{if(e.target.name==='en'){V.confirmed=false;const w=$('#warn');if(w)w.hidden=true}});
+document.addEventListener('change',async e=>{
+  const t=e.target,k=t.dataset.chg;
+  if(k==='bm'||k==='sort'){V[k]=t.value;V.i=0;V.flip=false;study()}
+  else if(k==='bmsel'){const n=$('#v-add [name=newbm]');n.hidden=t.value!=='__new';if(!n.hidden)n.focus()}
+  else if(t.name==='img'&&t.files[0]){
+    try{V.img=await shrink(t.files[0]);prev()}catch(_){warn('사진을 읽지 못했어요. 다른 사진으로 시도해 주세요.')}}});
+document.addEventListener('keydown',e=>{
+  if(e.target.closest('input,select,textarea'))return;
+  if(V.tab==='study'){if(e.key==='ArrowRight')A.next();else if(e.key==='ArrowLeft')A.prev()}
+  if((e.key==='Enter'||e.key===' ')&&e.target.classList.contains('card')){e.preventDefault();A.flip()}});
+let x0=null;
+const vs=$('#v-study');
+vs.addEventListener('touchstart',e=>{x0=e.touches[0].clientX},{passive:true});
+vs.addEventListener('touchend',e=>{if(x0===null)return;const dx=e.changedTouches[0].clientX-x0;x0=null;if(Math.abs(dx)>60)dx<0?A.next():A.prev()});
+go('home');
+</script>
+</body>
+</html>
